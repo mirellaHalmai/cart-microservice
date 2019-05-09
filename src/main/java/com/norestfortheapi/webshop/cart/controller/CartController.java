@@ -48,9 +48,9 @@ public class CartController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Long createNewCart(@RequestBody Cart cart) {
+    public Cart createNewCart(@RequestBody Cart cart) {
         Cart newCart = cartRepository.save(cart);
-        return newCart.getId();
+        return newCart;
     }
 
     @DeleteMapping("/{id}/products/{productId}")

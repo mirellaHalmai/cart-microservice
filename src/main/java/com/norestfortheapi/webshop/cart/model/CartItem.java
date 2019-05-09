@@ -22,7 +22,7 @@ public class CartItem {
     @Column(name = "product_id")
     private Long productId;
 
-    private int quantity;
+    private Integer quantity;
 
     private BigDecimal price;
 
