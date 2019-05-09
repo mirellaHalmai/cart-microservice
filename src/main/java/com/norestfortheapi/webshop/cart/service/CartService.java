@@ -27,14 +27,14 @@ public class CartService {
                 .filter(product -> product.getProductId().equals(productId))
                 .findFirst()
                 .ifPresent(cartItem -> decreaseProductQuantity(cart, cartItem));
-        cartRepository.save(cart);
-        return cart;
+        return cartRepository.getOne(cartId);
     }
 
     private void decreaseProductQuantity(Cart cart, CartItem cartItem) {
         int quantity = cartItem.getQuantity();
         if (quantity > 1) {
             cartItem.setQuantity(--quantity);
+            cartRepository.save(cart);
         } else if (quantity == 1) {
             cartItemRepository.delete(cartItem);
         }
