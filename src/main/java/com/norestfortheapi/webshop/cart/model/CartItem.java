@@ -26,6 +26,8 @@ public class CartItem {
 
     private BigDecimal price;
 
+    private String name;
+
     @Id
     @ManyToOne
     @JsonIgnoreProperties({"products"})

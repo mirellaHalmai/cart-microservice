@@ -58,6 +58,7 @@ public class CartService {
                 .productId(productToAdd.getProductId())
                 .price(productToAdd.getPrice())
                 .cart(cart)
+                .name(productToAdd.getName())
                 .quantity(1)
                 .build();
         List<CartItem> products = cart.getProducts();
