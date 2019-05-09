@@ -36,9 +36,9 @@ public class CartService {
             cartItem.setQuantity(--quantity);
             cartRepository.save(cart);
         } else if (quantity == 1) {
-            cartItemRepository.delete(cartItem);
             cart.getProducts().remove(cartItem);
             cartRepository.save(cart);
+            cartItemRepository.delete(cartItem);
         }
     }
 
