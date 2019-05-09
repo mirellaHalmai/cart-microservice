@@ -2,6 +2,7 @@ package com.norestfortheapi.webshop.cart.service;
 
 import com.norestfortheapi.webshop.cart.model.Cart;
 import com.norestfortheapi.webshop.cart.model.CartItem;
+import com.norestfortheapi.webshop.cart.repository.CartItemRepository;
 import com.norestfortheapi.webshop.cart.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class CartService {
 
     @Autowired
     CartRepository cartRepository;
+
+    @Autowired
+    CartItemRepository cartItemRepository;
 
     public Cart deleteProductFromCart(Long cartId, Long productId) {
         Cart cart = cartRepository.getOne(cartId);
@@ -32,9 +36,7 @@ public class CartService {
         if (quantity > 1) {
             cartItem.setQuantity(--quantity);
         } else if (quantity == 1) {
-            List<CartItem> products = cart.getProducts();
-            products.remove(cartItem);
-            cart.setProducts(products);
+            cartItemRepository.delete(cartItem);
         }
     }
 
